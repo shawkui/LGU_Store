@@ -1,0 +1,39 @@
+{% extends "home.html" %}
+
+{% block bottom %}
+<!--搜索框-->
+<div id="J_PopSearch" class="searchbox">
+    <form action="/search" accept-charset="utf-8" method="POST">
+        <p>
+            <legend align="center">
+                <input type="search" name='item_name' placeholder="Type to search" style="width: 60%; height: 35px;">
+                <input type="submit" title="Search" style="background-color: #3b5998; color: aliceblue;  padding: 8px 18px; 
+          text-align: center; cursor: pointer; border-radius: 7px;" value="Search">
+            </legend>
+        </p>
+    </form>
+</div>
+
+
+<div>
+    <p
+        style="color:#ffffff;background: #3b5998;;border:1px solid #3b5998;padding:10px;margin-bottom:15px;font-size:19px;">
+        <legend style="text-align: center;">{{Showbox_title}}</legend>
+    </p>
+    {% for item in item_list%}
+    <div id="p1" style="background-color:white;height:300px;width: 33%;;float:left;">
+        <div style="text-align: center;">
+            <b><img src="{{ item[5] }}" alt="some_image" height="210px" width="210px" style="margin: 0 auto;"
+                    onerror="this.src='{{ static_url("default.png") }}'"></b><br>
+            <h4><a href="/item/{{item[0]}}" style="color: black;">{{item[1]}}</a>，￥{{item[2]}}</h4>
+            <a href="/store/{{item[3]}}" style="color: black;">{{item[4]}} </a>
+        </div>
+    </div>
+
+
+    {% end %}
+</div>
+
+
+
+{% end %}

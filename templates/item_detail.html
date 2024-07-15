@@ -1,0 +1,62 @@
+{% extends "home.html" %}
+
+{% block bottom %}
+
+<div>
+    <div id="p1" style="background-color:white;height:250px;width: 40%;;float:left;">
+        <b><img src="{{ item[3] }}" alt="some_image" height="250px" width="250px" style="margin: 0 auto;"
+                onerror="this.src='{{ static_url("default.png") }}'"></b><br>
+    </div>
+    <div id="p2" style="background-color:white;height:250px;width: 60%;;float:left;">
+        <!--用来占位置的block-->
+        <div id="p3" style="background-color:white;height:250px;width: 40%;;float:left;">
+        </div>
+        <div id="p4" style="background-color:white;height:250px;width: 60%;;float:left;">
+            <table>
+                <tr>
+                    <th> &nbsp; </th>
+                    <th> &nbsp; </th>
+                </tr>
+                <tr>
+                    <td> Name: </td>
+                    <td> {{item[2]}} </td>
+                </tr>
+                <tr>
+                    <td> Price: </td>
+                    <td> ￥{{item[6]}} </td>
+                </tr>
+                <tr>
+                    <td> Rate: </td>
+                    <td> {{item[9]}}/5.0 </td>
+                </tr>
+                <tr>
+                    <td> Describe: </td>
+                    <td> {{item[4]}} </td>
+                </tr>
+                <tr>
+                    <td> Sale Volume: &nbsp;</td>
+                    <td> {{item[7]}} </td>
+                </tr>
+                <tr>
+                    <td> Inventory: </td>
+                    <td> {{item[8]}} </td>
+                </tr>
+                <tr>
+                    <td> Store: </td>
+                    <td><a href="/store/{{item[10]}}" style="color: black;"> {{item[12]}} </a></td>
+                </tr>
+            </table>
+            <p>
+                <form style="width: 130%; padding: 5px;" action="/item/{{item[0]}}" method="POST">
+                    <input type="text" value="{{item[0]}}" name="i_id" , style="display: none;">
+                    <input type="submit" style="background-color: #3b5998; color: aliceblue;  padding: 8px 18px; 
+                      text-align: center; cursor: pointer; border-radius: 7px;" value="Add to Cart">
+                </form>
+            </p>
+
+        </div>
+
+    </div>
+</div>
+
+{% end %}

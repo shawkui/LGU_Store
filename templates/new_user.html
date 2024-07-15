@@ -1,0 +1,62 @@
+{% extends "base.html" %}
+
+{% block body %}
+{% if user=='customer'%}
+<form name='customer' action="/customer/newaccount" method="POST">
+  <p
+    style="color:#ffffff;background: #3b5998;;border:1px solid #3b5998;padding:10px;margin-bottom:15px;font-size:15px;">
+    <legend align="center">Customer Login</legend>
+  </p>
+  <p>
+    <legend align="center">User Name: <input name="n_name" type="text" style="width: 200px;"><br></legend>
+  </p>
+  <p>
+    <legend align="center">Password &ensp;: <input name="n_pass" type="password" style="width: 200px;"><br></legend>
+  </p>
+  <p>
+    <legend align="center">Gender &ensp;&ensp;&ensp;: <select name="n_sex" style="width: 200px;">
+        <option selected value="man"> woman</option>
+        <option selected value="woman"> man</option>
+      </select>
+    </legend>
+  </p>
+  <p>
+    <legend align="center">Age &ensp;&ensp;&ensp;&ensp;&ensp;&ensp;: <input name="n_age" type="text"
+        style="width: 200px;"><br></legend>
+  </p>
+  {% if customer_warning %}
+  <p>
+    <legend style="text-align: center; color: red;"> {{customer_warning}}</legend>
+  </p>
+  {%end%}
+  <legend align="center"><input type="submit" value="Create">
+  </legend>
+</form>
+{% end%}
+
+{% if user=='seller'%}
+<form name='customer' action="/seller/newaccount" method="POST">
+  <p
+    style="color:#ffffff;background: #3b5998;;border:1px solid #3b5998;padding:10px;margin-bottom:15px;font-size:15px;">
+    <legend align="center">Customer Login</legend>
+  </p>
+  <p>
+    <legend align="center">User Name: <input name="n_name" type="text"><br></legend>
+  </p>
+  <p>
+    <legend align="center">Password &ensp;: <input name="n_pass" type="password"><br></legend>
+  </p>
+  <p>
+    <legend align="center">Address &ensp;&ensp;: <input name="n_add" type="text"><br></legend>
+  </p>
+  {% if customer_warning %}
+  <p>
+    <legend style="text-align: center; color: red;"> {{customer_warning}}</legend>
+  </p>
+  {%end%}
+  <legend align="center"><input type="submit" value="Create">
+  </legend>
+</form>
+{% end%}
+
+{% end %}

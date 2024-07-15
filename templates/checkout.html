@@ -1,0 +1,84 @@
+{% extends "customer_center.html" %}
+
+{% block info  %}
+<div style="background-color: white;">
+    <h4>Shopping Cart:</h4>
+    <table border="10" style="width: 100%; height: 100px;text-align: center; background-color: white;">
+        <tr>
+            <th>Item</th>
+            <th>Price</th>
+            <th>Amount</th>
+            <th>Total Price</th>
+            <th>Current Inventory</th>
+            <th>Residual Inventory</th>
+        </tr>
+        {%for item in item_list%}
+        <tr>
+            <td>{{item[1]}}</td>
+            <td>{{item[2]}}</td>
+            <td>{{item[3]}} </td>
+            <td> {{item[4]}} </td>
+            <td>{{item[5]}} </td>
+            {% if (item[6]<0) %}
+            <td style="color: red;"> {{item[6]}} </td>
+            {%else%}
+            <td style="color: black;"> {{item[6]}} </td>
+            {%end%}
+        </tr>
+        </p10> {%end%}
+    </table>
+    <div style="text-align: left; float: right; font-size: large;">
+        <table>
+            <tr>
+                <td>
+                    Total Cost:
+                </td>
+                <td>
+                    {{total_cost}}
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Residual Balance :&nbsp;&nbsp;&nbsp;
+                </td>
+                {% if res_balance<0%}
+                <td style="color: red;">
+                    {{res_balance}}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    {%else%}
+                <td style="color: black;">
+                    {{res_balance}}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    {%end%}
+                </td>
+            </tr>
+        </table>
+    </div>
+
+
+    <form action="/customer/placeorder" method="POST">
+        Receiver Address: &nbsp;
+        <select name="o_add">
+            <option value="{{add_list[0][0]}}">
+                Default: {{add_list[0][1]}}, {{add_list[0][2]}}, {{add_list[0][3]}}
+            </option>
+            {%for add in add_list%}
+            <option value="{{add[0]}}">
+                {{add[1]}}, {{add[2]}}, {{add[3]}}
+            </option>
+            {%end%}
+        </select>
+        <table border="10" style="width: 100%; height: 100px;text-align: center;">
+            <tr>
+                <td>
+                    <input type="submit" style="background-color: #3b5998; color: aliceblue;  padding: 4px 8px; 
+                    text-align: center; cursor: pointer; border-radius: 7px;" value="Place Order & Pay">
+                </td>
+            </tr>
+
+        </table>
+
+    </form>
+
+
+</div>
+
+{% end %}

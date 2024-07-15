@@ -1,0 +1,19 @@
+{% extends "home.html" %}
+
+{% block bottom %}
+<div id="container" style="width:auto">
+
+    <div id="header" style="background-color: white;">
+        <h1 style="color: #333333;">Wallet</h1> <br>
+        <h2 style="color: #333333;">My Balance {{balance}}</h2>
+
+
+    </div>
+</div>
+<div style="background-color: white;">
+    {% block info %}{% end %}
+
+</div>
+
+
+{% end %}

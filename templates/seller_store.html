@@ -1,0 +1,40 @@
+{% extends "store.html" %}
+
+{% block bottom %}
+<div class="top" style="background: #3b5998 ; line-height: 200%;">
+    <ul>
+        <li><a href="/seller/center/item">Item</a></li>
+        <li><a href="/seller/center/storeinfo" style="background-color:white; color: black;"> Store</a></li>
+        <li><a href="/seller/center/orderhistory">History Order</a></li>
+        <li><a href="/seller/center/statistic">Statistic</a></li>
+    </ul>
+</div>
+
+<div>
+    <h4>Store Information</h4>
+    <p>
+        <form name='form1' style="width: 130%; padding: 5px;" action="/seller/center/storeinfo_save" method="POST">
+            <p>
+                Store Name: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" name='s_name' value="{{item[0]}}"
+                    style="width: 60%; height: 35px;">
+                <input type="submit" style="background-color: #3b5998; color: aliceblue;  padding: 8px 18px; 
+                            text-align: center; cursor: pointer; border-radius: 7px;" value="Save">
+            </p>
+            <p>
+                Location: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <input type="text"
+                    name='s_address' value="{{item[1]}}" style="width: 60%; height: 35px;">
+                <input type="submit" style="background-color: #3b5998; color: aliceblue;  padding: 8px 18px; 
+                            text-align: center; cursor: pointer; border-radius: 7px;" value="Save">
+            </p>
+            <p>
+                md5 Password: &nbsp; <input type="text" name='s_pass' value="{{item[2]}}"
+                    style="width: 60%; height: 35px;">
+                <input type="submit" style="background-color: #3b5998; color: aliceblue;  padding: 8px 18px; 
+                            text-align: center; cursor: pointer; border-radius: 7px;" value="Save">
+            </p>
+        </form>
+    </p>
+
+</div>
+
+{% end %}

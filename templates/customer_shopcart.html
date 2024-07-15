@@ -1,0 +1,78 @@
+{% extends "customer_center.html" %}
+
+{% block info %}
+<div class="top" style="background: #3b5998 ; line-height: 200%;">
+    <center>
+        <ul>
+            <li><a href="/customer/center/orderhistory">Order History</a></li>
+            <li><a href="/customer/center/address">Address</a></li>
+            <li><a href="/customer/center/shoppingcart" style="background-color:white; color: black;">Shopping Cart</a>
+            </li>
+        </ul>
+    </center>
+</div>
+<div>
+    <h4>Shopping Cart:</h4>
+    <table border="10" style="width: 100%; height: 100px;text-align: center;">
+        <tr>
+            <th>Item</th>
+            <th>Price</th>
+            <th>Amount</th>
+            <th>Total Price</th>
+            <th> Operation</th>
+        </tr>
+        {%for item in item_list%}
+        <form name='form_{{item[0]}}'>
+            <tr>
+                <td><a href="/item/{{item[0]}}" style="color: black;"> {{item[1]}}</a></td>
+                <td>{{item[2]}}</td>
+                <td>
+                    <input type="button" style="background-color: #3b5998; color: aliceblue;  padding: 4px 8px; 
+                text-align: center; cursor: pointer; border-radius: 7px;" value="-"
+                        onclick="minus_amt('s{{item[0]}}', '{{item[2]}}', 'total_cost{{item[0]}}')">
+
+                    <input id='s{{item[0]}}' type="text" style="padding: 4px 8px; width: 20px;
+                text-align: center; cursor: pointer; border-radius: 7px;" value="{{item[3]}}"
+                        onchange="update_cost('s{{item[0]}}', '{{item[2]}}', 'total_cost')" name="amt"
+                        onkeydown="if(event.keyCode==13){update_cost('s{{item[0]}}', '{{item[2]}}', 'total_cost{{item[0]}}');return false}">
+
+                    <input type="button" style="background-color: #3b5998; color: aliceblue;  padding: 4px 8px; 
+                text-align: center; cursor: pointer; border-radius: 7px;" value="+"
+                        onclick="add_amt('s{{item[0]}}', '{{item[2]}}', 'total_cost{{item[0]}}')">
+                </td>
+                <td id='total_cost{{item[0]}}'> </td>
+                <script>
+                    document.getElementById("total_cost{{item[0]}}").innerHTML = (parseFloat('{{item[2]}}') * parseFloat(document.getElementById('s{{item[0]}}').value)).toFixed(2);
+                </script>
+                <td>
+                    <input type="button" style="background-color: #3b5998; color: aliceblue;  padding: 4px 8px; 
+                    text-align: center; cursor: pointer; border-radius: 7px;" value="Save"
+                        onclick="save_item('form_{{item[0]}}', '{{item[0]}}')">
+                    <input type="button" style="background-color: #3b5998; color: aliceblue;  padding: 4px 8px; 
+                    text-align: center; cursor: pointer; border-radius: 7px;" value="Delete"
+                        onclick="delete_item('form_{{item[0]}}', '{{item[0]}}')">
+
+                </td>
+            </tr>
+        </form>
+        {%end%}
+        {% if item_list%}
+
+        <form action="/customer/checkout" method="GET">
+            <table border="10" style="width: 100%; height: 100px;text-align: center;">
+                <tr>
+                    <td>
+                        <input type="submit" style="background-color: #3b5998; color: aliceblue;  padding: 4px 8px; 
+                        text-align: center; cursor: pointer; border-radius: 7px;" value="Check Out">
+                    </td>
+                </tr>
+
+            </table>
+
+        </form>
+        {%end%}
+
+</div>
+
+
+{% end %}

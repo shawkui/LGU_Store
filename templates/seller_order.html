@@ -1,0 +1,60 @@
+{% extends "store.html" %}
+
+{% block bottom %}
+<div class="top" style="background: #3b5998 ; line-height: 200%;">
+    <ul>
+        <li><a href="/seller/center/item">Item</a></li>
+        <li><a href="/seller/center/storeinfo"> Store</a></li>
+        <li><a href="/seller/center/orderhistory" style="background-color:white; color: black;">Order History</a></li>
+        <li><a href="/seller/center/statistic">Statistic</a></li>
+    </ul>
+</div>
+<div>
+    <div>
+        <h4>Order:</h4>
+        <table border="10"
+            style="width: 100%; height: 100px;text-align: center; background-color: #3b5998;color: white;">
+            <tr>
+                <th>Order Number</th>
+                <th>Address</th>
+                <th>Total Cost</th>
+                <th>Place Time</th>
+            </tr>
+            {%for order in order_list%}
+            <tr>
+                <td><a href="\seller\center\orderdetail\{{order[0]}}" style="color: white;"> {{order[0]}}</a> </a>
+                </td>
+                <td style="text-align: left; padding-left: 10px;">{{order[1]}}, {{order[2]}}, {{order[3]}}</td>
+                <td>{{order[4]}} </td>
+                <td>{{order[5]}} </td>
+            </tr>
+            {%end%}
+        </table>
+        {% if order_detail_list %}
+
+        <table border="10" style="width: 100%; height: 100px;text-align: center; background-color: white;">
+            <tr>
+                <th>Item</th>
+                <th>Price</th>
+                <th>Amount</th>
+                <th>Total Cost</th>
+            </tr>
+            {%for d in order_detail_list%}
+            <tr>
+                <td><a href="/item/{{d[0]}}" style="color: black;"> {{d[1]}} </a></td>
+                <td>{{d[2]}}</td>
+                <td>{{d[3]}}</td>
+                <td>{{round(float(d[2])*float(d[3]),2)}}</td>
+            </tr>
+            {%end%}
+        </table>
+        {%end%}
+    </div>
+
+
+</div>
+
+
+
+
+{% end %}

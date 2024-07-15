@@ -1,0 +1,57 @@
+{% extends "base.html" %}
+
+{% block body %}
+<form name='customer' action="/customer/login" method="POST">
+  <p
+    style="color:#ffffff;background: #3b5998;;border:1px solid #3b5998;padding:10px;margin-bottom:15px;font-size:15px;">
+    <legend align="center">Customer Login</legend>
+  </p>
+  <p>
+    <legend align="center">User Name: <input name="username" type="text"><br></legend>
+  </p>
+  <p>
+    <legend align="center">Password &ensp;: <input name="password" type="password"><br></legend>
+  </p>
+  {% if customer_warning %}
+  <p>
+    <legend style="text-align: center; color: red;"> {{customer_warning}}</legend>
+  </p>
+  {%end%}
+  <legend align="center"><input type="submit" value="Log in">
+  </legend>
+</form>
+<form action="/customer/newaccount" method="GET">
+  <br>
+  <legend align="center"><input type="submit" value="Create Account">
+  </legend>
+</form>
+
+<form action="/seller/login" method="POST">
+  <p
+    style="color:#ffffff;background: #3b5998;;border:1px solid #3b5998;padding:10px;margin-bottom:15px;font-size:15px;">
+    <legend align="center">Seller Login</legend>
+  </p>
+  <p>
+    <legend align="center">User Name: <input name="username" type="text"><br></legend>
+  </p>
+  <p>
+    <legend align="center">Password &ensp;: <input name="password" type="password"><br></legend>
+  </p>
+  {% if seller_warning %}
+  <p>
+    <legend style="text-align: center; color: red;"> {{seller_warning}}</legend>
+  </p>
+  {%end%}
+
+  <legend align="center"><input type="submit" value="Log in"></legend>
+</form>
+
+<form action="/seller/newaccount" method="GET">
+  <br>
+  <legend align="center"><input type="submit" value="Create Account">
+  </legend>
+</form>
+
+
+
+{% end %}

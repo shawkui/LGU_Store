@@ -1,0 +1,80 @@
+{% extends "store.html" %}
+
+{% block bottom %}Information
+<div class="top" style="background: #3b5998 ; line-height: 200%;">
+    <ul>
+        <li><a href="/seller/center/item">Item</a></li>
+        <li><a href="/seller/center/storeinfo"> Store Information</a></li>
+        <li><a href="/seller/center/orderhistory">History Order</a></li>
+        <li><a href="/seller/center/statistic">Statistic</a></li>
+    </ul>
+</div>
+<div id="p1" style="background-color:white;height:250px;width: 40%;;float:left;">
+    <b><img src="{{ item[3] }}" alt="some_image" height="250px" width="250px" style="margin: 0 auto;"
+            onerror="this.src='{{ static_url("default.png") }}'"></b><br>
+</div>
+<div id="p2" style="background-color:white;height:250px;width: 60%;;float:left;">
+    <!--用来占位置的block-->
+    <div id="p3" style="background-color:white;height:250px;width: 20%;;float:left;">
+    </div>
+    <div id="p4" style="background-color:white;height:250px;width: 80%;;float:left;">
+        <form style="width: 130%; padding: 5px;" action="/seller/center/item_{{oper}}_{{item[0]}}" method="POST">
+            <table>
+                <tr>
+                    <th> &nbsp; </th>
+                    <th> &nbsp; </th>
+                </tr>
+                <tr>
+                    <td> Name: </td>
+                    <td> <input type="text" value=" {{item[2]}}" name='p_name'> </td>
+                </tr>
+                <tr>
+                    <td> Category: </td>
+                    <td>
+                        <select name="p_cat">
+                            <option selected value="{{item[5]}}">{{item[5]}}</option>
+                            <option value="2">2-Clothing</option>
+                            <option value="3">3-Food & Drinks</option>
+                            <option value="4">4-Books</option>
+                            <option value="5">5-Home Appliance</option>
+                            <option value="6">6-Electronics</option>
+                            <option value="7">7-Beauty & Health</option>
+
+                        </select>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td> Price: </td>
+                    <td> <input type="text" value=" {{item[6]}}" name="p_price">￥</td>
+                </tr>
+                <tr>
+                    <td> Rate: </td>
+                    <td> {{item[9]}}/5.0 </td>
+                </tr>
+                <tr>
+                    <td> Describe: </td>
+                    <td> <input type="text" value=" {{item[4]}}" name='p_des'> </td>
+                </tr>
+                <tr>
+                    <td> Sale Volume: &nbsp;</td>
+                    <td> {{item[7]}} </td>
+                </tr>
+                <tr>
+                    <td> Inventory: </td>
+                    <td> <input type="text" value=" {{item[8]}}" name="p_invent"> </td>
+                </tr>
+                <tr>
+                    <td> Image: </td>
+                    <td> <input type="text" value=" {{item[3]}}" name="p_image"> </td>
+                </tr>
+            </table>
+            <input type="submit" style="background-color: #3b5998; color: aliceblue;  padding: 8px 18px; 
+                  text-align: center; cursor: pointer; border-radius: 7px;" value="Save">
+        </form>
+
+    </div>
+
+</div>
+
+{% end %}

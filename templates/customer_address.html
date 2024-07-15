@@ -1,0 +1,44 @@
+{% extends "customer_center.html" %}
+
+{% block info %}
+<div class="top" style="background: #3b5998 ; line-height: 200%;">
+    <center>
+        <ul>
+            <li><a href="/customer/center/orderhistory">Order History</a></li>
+            <li><a href="/customer/center/address" style="background-color:white; color: black;">Address</a></li>
+            <li><a href="/customer/center/shoppingcart">Shopping Cart</a></li>
+        </ul>
+    </center>
+</div>
+
+<div>
+    <h4>Address</h4>
+    {%for add in add_list%}
+    <p>
+        <form name='form{{add[0]}}' style="width: 130%; padding: 5px;">
+            <input id='r_name' type="text" name='r_name' value="{{add[1]}}" style="width: 5%; height: 35px;">
+            <input id='r_phone' type="text" name='r_phone' value="{{add[2]}}" style="width: 10%; height: 35px;">
+            <input id='r_add' type="text" name='r_add' value="{{add[3]}}" style="width: 45%; height: 35px;">
+            <input type="button" style="background-color: #3b5998; color: aliceblue;  padding: 8px 18px; 
+                    text-align: center; cursor: pointer; border-radius: 7px;" value="Save"
+                onclick="save_address('form{{add[0]}}', '{{add[0]}}')">
+            <input type="button" style="background-color: #3b5998; color: aliceblue;  padding: 8px 18px; 
+                        text-align: center; cursor: pointer; border-radius: 7px;" value="Delete"
+                onclick="delete_address('form{{add[0]}}', '{{add[0]}}')">
+        </form>
+    </p>
+    {%end%}
+
+    <p>
+        <form name='new_add' style="width: 130%; padding: 5px;" action="/customer/center/address_new" method="POST">
+            <input id='r_name' type="text" name='r_name' value="Name" style="width: 5%; height: 35px;">
+            <input id='r_phone' type="text" name='r_phone' value="Phone Number" style="width: 10%; height: 35px;">
+            <input id='r_add' type="text" name='r_add' value="New Receiver Address" style="width: 45%; height: 35px;">
+            <input type="submit" style="background-color: #3b5998; color: aliceblue;  padding: 8px 18px; 
+                    text-align: center; cursor: pointer; border-radius: 7px;" value="New">
+        </form>
+    </p>
+</div>
+
+
+{% end %}
